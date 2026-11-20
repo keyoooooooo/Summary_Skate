@@ -1,0 +1,60 @@
+{
+  "source_file": "/data/coding/expert_event.csv",
+  "athlete_ids_local_only": {
+    "A": "2",
+    "B": "3"
+  },
+  "model": "Qwen3.8-27B-FP8",
+  "input_rows": 111,
+  "sampled_rows": 12,
+  "time_range_s": [
+    0.0,
+    2.2
+  ],
+  "gap_sign": "opponent_ahead",
+  "offset_sign": "subject_outer",
+  "system_prompt": "你是短道速滑二维轨迹的运动学事实摘要助手。\n你只负责把双人连续数值时序概括为客观的中文运动描述，供后续独立的 ISU 文本检索使用。\n\n严格要求：\n1. 只能描述输入中有数值依据的运动状态、相对关系和时间演化；保留变化先后、持续阶段和反转，不要只复述起点终点。\n2. 禁止推断运动员意图、战术名称、进攻/防守策略、犯规责任、比赛结果。禁止使用“内线进攻”“外线进攻”“换线再进攻”“跟滑战术”“成功超越”等标签或结论。\n3. A、B 是匿名运动员；不得根据身份名称推断任何行为。\n4. 不自行猜测 gap 或 offset 的符号与领先/内外侧的关系。仅在输入明确提供符号约定时才能作出对应描述；否则只使用“该带符号数值增加/减少、由负转正”等描述。\n5. 速度标记为不可用或需复核的位置，不能把对应数值作为可靠证据；缺失区间不要推断。\n6. 精确数值、相对变化、时间必须有输入依据；如果无法确定，就明确写入 uncertainties。\n7. 分段摘要按实际观察到的运动变化组织，不要机械地把每一段判定为某项战术，也不要凭空推断行为的真实起止边界。\n8. 只输出一个合法 JSON 对象，不输出 Markdown、不输出推理过程。\n\nJSON 格式：\n{\n  \"summary\": \"一段连贯、客观的整体运动学摘要（100～220字，可按实际信息量调整）\",\n  \"phases\": [\n    {\"time_range_s\": [0.0, 1.0], \"description\": \"这段时间的客观运动变化\", \"evidence\": \"引用所提供的数值/统计\"}\n  ],\n  \"key_observations\": [\"最多5条关键客观观察\"],\n  \"uncertainties\": [\"符号约定不明确或数据支持不足之处\"]\n}\n",
+  "user_prompt": "请客观概括下面一组短道速滑运动员 A、B 的双人时序数据。\n\n【角色与时间】\nA、B 为匿名运动员编号，不包含战术主体或客体的判定。\n相对时间范围：0.00～2.20 秒；对应视频时间：32.90～35.10 秒。\n注意：输入只是一个被截取的观察片段，截取边界不等于实际运动行为边界。\n\n【变量定义】\n- gap_m: CSV 列 gap_opponent_minus_subject_m，表示 B 减 A 的带符号间隔；gap_m > 0 表示 B 在赛道进度上领先 A；gap_m < 0 表示 A 领先 B。\n- offset_m: CSV 列 offset_subject_minus_opponent_m，表示 A 减 B 的带符号横向偏移；offset_m > 0 表示 A 相对 B 更靠赛道外侧；offset_m < 0 表示 A 更靠内侧。\n- v_path_A / v_path_B: A/B 沿实际路径的速度（米/秒）。\n- delta_v_path: A 的路径速度减 B 的路径速度（米/秒）。\n- v_ref_A / v_ref_B: A/B 沿赛道参考线方向的进度速度（米/秒）。\n- delta_v_ref: A 的参考线进度速度减 B 的参考线进度速度（米/秒）。\n- section_A / section_B: 所在赛道分段标识，只代表几何区段，不代表战术。\n- NA: 数据无效或缺失，不能据此作出运动判断。\n- 如果数值为负，只代表该变量的符号；是否属于领先或内外侧取决于上面的明确约定。\n\n【从全量原始采样计算的客观统计】\n记录数：111；其中速度数据可用记录数：111。\n- gap_m (米): 首值=0.52, 末值=-0.44, 首末变化=-0.96, 最小=-0.44, 最大=0.55\n- offset_m (米): 首值=-2.05, 末值=-0.93, 首末变化=1.13, 最小=-2.08, 最大=-0.78\n- delta_v_path (米/秒): 首值=-0.09, 末值=-0.37, 首末变化=-0.27, 最小=-1.22, 最大=1.34\n- delta_v_ref (米/秒): 首值=-0.15, 末值=1.19, 首末变化=1.34, 最小=-0.92, 最大=1.78\n\n【按时间抽取的代表性采样点；共 12 个】\nt_s,gap_m,offset_m,v_path_A,v_path_B,delta_v_path,v_ref_A,v_ref_B,delta_v_ref,section_A,section_B\n0.00,0.52,-2.05,13.80,13.89,-0.09,13.74,13.89,-0.15,lower_straight,lower_straight\n0.20,0.52,-2.00,13.54,12.85,0.69,13.54,12.82,0.71,lower_straight,lower_straight\n0.40,0.34,-1.65,11.23,11.40,-0.18,11.22,11.11,0.12,lower_straight,lower_straight\n0.60,0.38,-1.45,14.56,14.22,0.34,14.38,14.13,0.25,lower_straight,lower_straight\n0.80,0.39,-1.69,13.31,14.05,-0.74,13.26,14.05,-0.79,lower_straight,lower_straight\n1.00,0.52,-1.66,13.77,13.90,-0.13,13.76,13.86,-0.10,lower_straight,lower_straight\n1.20,0.50,-1.43,14.01,14.15,-0.15,13.98,14.01,-0.03,lower_straight,lower_straight\n1.40,0.49,-1.13,13.75,13.93,-0.18,13.67,12.50,1.17,lower_straight,right_curve\n1.60,0.17,-0.94,13.87,13.81,0.06,14.88,13.22,1.66,right_curve,right_curve\n1.80,-0.17,-0.85,14.03,13.95,0.07,15.08,13.57,1.51,right_curve,right_curve\n2.00,-0.35,-0.79,13.13,14.10,-0.97,13.66,13.35,0.31,right_curve,right_curve\n2.20,-0.44,-0.93,13.44,13.81,-0.37,13.37,12.18,1.19,right_curve,right_curve\n\n【输出要求】\n1. 先描述总体运动状态，再说明重要的局部变化、反转和阶段差异。\n2. 区分路径速度和参考线方向速度；不可混用。\n3. 如果输入不足以判断内外侧、领先关系或者行为边界，请明确说明。\n4. 不要输出战术标签，不要根据文本自行补造轨迹。\n5. 按 System Prompt 的 JSON 格式返回。\n",
+  "status": "ok",
+  "llm_output": {
+    "summary": "在0.00至2.20秒片段中，A与B均位于lower_straight或right_curve区段。初始时gap_m为0.52（B领先），offset_m为-2.05（A相对B更靠内侧）。随后gap_m逐渐减小，在1.80秒左右由正转负，表明A在赛道进度上反超B，末值gap_m为-0.44。offset_m从-2.05持续增加至-0.93，显示A相对B的横向位置向内侧偏移量减小（即A相对B向外侧移动或B向内侧移动）。路径速度差delta_v_path波动较大，参考线速度差delta_v_ref在后期显著为正，表明A在参考线方向上的进度速度优势明显。",
+    "phases": [
+      {
+        "time_range_s": [
+          0.0,
+          1.4
+        ],
+        "description": "A与B均在lower_straight区段。gap_m在0.34至0.52之间波动，B保持领先。offset_m从-2.05减小至-1.13，A相对B的内侧偏移量逐渐缩小。delta_v_path在-0.74至0.69之间波动，无持续显著的速度差。",
+        "evidence": "t=0.00 gap=0.52, offset=-2.05; t=1.40 gap=0.49, offset=-1.13; delta_v_path max=0.69, min=-0.74"
+      },
+      {
+        "time_range_s": [
+          1.4,
+          2.2
+        ],
+        "description": "A进入right_curve区段，B随后也进入。gap_m从0.49迅速下降至-0.44，在1.80秒左右发生符号反转，A在进度上领先B。offset_m继续增加至-0.93。delta_v_ref显著为正（最大1.78），表明A在参考线方向速度明显快于B。",
+        "evidence": "t=1.40 gap=0.49, section_A=lower_straight, section_B=right_curve; t=1.80 gap=-0.17, delta_v_ref=1.51; t=2.20 gap=-0.44, delta_v_ref=1.19"
+      }
+    ],
+    "key_observations": [
+      "gap_m由初始的0.52变为末值的-0.44，表明B从领先A变为落后A，进度关系发生反转。",
+      "offset_m从-2.05单调增加至-0.93，表明A相对B的横向内侧偏移量显著减小。",
+      "在1.40秒后，delta_v_ref持续为正且数值较大（>1.0 m/s），显示A在参考线方向上的进度速度优势。",
+      "A在1.40秒时位于lower_straight，而B已进入right_curve，随后两者均位于right_curve。",
+      "delta_v_path在片段内波动剧烈，最小-1.22，最大1.34，未呈现单一方向的持续速度差。"
+    ],
+    "uncertainties": [
+      "offset_m始终为负值，根据定义A始终相对B更靠内侧，但具体物理内外侧需结合赛道几何确认，此处仅描述相对符号变化。",
+      "片段截取边界（0.00s和2.20s）不代表运动行为的完整起止，gap_m的反转可能发生在片段之前或之后延续。",
+      "section标识仅代表几何区段，不能推断运动员的战术意图或具体动作。"
+    ]
+  },
+  "raw_response": "{\n  \"summary\": \"在0.00至2.20秒片段中，A与B均位于lower_straight或right_curve区段。初始时gap_m为0.52（B领先），offset_m为-2.05（A相对B更靠内侧）。随后gap_m逐渐减小，在1.80秒左右由正转负，表明A在赛道进度上反超B，末值gap_m为-0.44。offset_m从-2.05持续增加至-0.93，显示A相对B的横向位置向内侧偏移量减小（即A相对B向外侧移动或B向内侧移动）。路径速度差delta_v_path波动较大，参考线速度差delta_v_ref在后期显著为正，表明A在参考线方向上的进度速度优势明显。\",\n  \"phases\": [\n    {\n      \"time_range_s\": [0.0, 1.4],\n      \"description\": \"A与B均在lower_straight区段。gap_m在0.34至0.52之间波动，B保持领先。offset_m从-2.05减小至-1.13，A相对B的内侧偏移量逐渐缩小。delta_v_path在-0.74至0.69之间波动，无持续显著的速度差。\",\n      \"evidence\": \"t=0.00 gap=0.52, offset=-2.05; t=1.40 gap=0.49, offset=-1.13; delta_v_path max=0.69, min=-0.74\"\n    },\n    {\n      \"time_range_s\": [1.4, 2.2],\n      \"description\": \"A进入right_curve区段，B随后也进入。gap_m从0.49迅速下降至-0.44，在1.80秒左右发生符号反转，A在进度上领先B。offset_m继续增加至-0.93。delta_v_ref显著为正（最大1.78），表明A在参考线方向速度明显快于B。\",\n      \"evidence\": \"t=1.40 gap=0.49, section_A=lower_straight, section_B=right_curve; t=1.80 gap=-0.17, delta_v_ref=1.51; t=2.20 gap=-0.44, delta_v_ref=1.19\"\n    }\n  ],\n  \"key_observations\": [\n    \"gap_m由初始的0.52变为末值的-0.44，表明B从领先A变为落后A，进度关系发生反转。\",\n    \"offset_m从-2.05单调增加至-0.93，表明A相对B的横向内侧偏移量显著减小。\",\n    \"在1.40秒后，delta_v_ref持续为正且数值较大（>1.0 m/s），显示A在参考线方向上的进度速度优势。\",\n    \"A在1.40秒时位于lower_straight，而B已进入right_curve，随后两者均位于right_curve。\",\n    \"delta_v_path在片段内波动剧烈，最小-1.22，最大1.34，未呈现单一方向的持续速度差。\"\n  ],\n  \"uncertainties\": [\n    \"offset_m始终为负值，根据定义A始终相对B更靠内侧，但具体物理内外侧需结合赛道几何确认，此处仅描述相对符号变化。\",\n    \"片段截取边界（0.00s和2.20s）不代表运动行为的完整起止，gap_m的反转可能发生在片段之前或之后延续。\",\n    \"section标识仅代表几何区段，不能推断运动员的战术意图或具体动作。\"\n  ]\n}",
+  "usage": {
+    "completion_tokens": 844,
+    "prompt_tokens": 1861,
+    "total_tokens": 2705,
+    "completion_tokens_details": null,
+    "prompt_tokens_details": null
+  }
+}

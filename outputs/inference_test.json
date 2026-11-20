@@ -1,0 +1,15 @@
+{
+  "model": "Qwen3.8-27B-FP8",
+  "base_url": "http://127.0.0.1:8000/v1",
+  "prompt": "运动员A原本位于运动员B后方，随后沿内侧接近B并移动至B前方。请用一句客观的中文描述这一运动过程，不要推断动机或犯规。",
+  "response": "运动员A从运动员B后方沿内侧接近并超越至其前方。",
+  "finish_reason": "stop",
+  "elapsed_seconds": 0.711,
+  "usage": {
+    "completion_tokens": 16,
+    "prompt_tokens": 69,
+    "total_tokens": 85,
+    "completion_tokens_details": null,
+    "prompt_tokens_details": null
+  }
+}

@@ -1,0 +1,717 @@
+{
+  "schema_version": "pairwise_v1.1",
+  "generated_at_utc": "2026-11-17T14:30:11.509839+00:00",
+  "race_id": "beijing_owg_2022_f500_fa",
+  "source_single_schema_version": "2.2",
+  "source_metadata": "..\\metadata.json",
+  "source_single_dir": "..",
+  "data_structure": {
+    "type": "directed_pairwise",
+    "one_csv_per_directed_pair": true,
+    "time_key": "frame",
+    "row_alignment": "complete_integer_frames_in_overlapping_range",
+    "preserve_invalid_frames": true,
+    "total_columns": 43,
+    "columns": [
+      "frame",
+      "video_time_s",
+      "subject_x_m",
+      "subject_y_m",
+      "subject_reference_progress_mod_m",
+      "subject_lateral_offset_ref_m",
+      "subject_path_speed_mps",
+      "subject_reference_progress_speed_mps",
+      "subject_lateral_speed_mps",
+      "subject_path_tangential_accel_mps2",
+      "subject_reference_progress_accel_mps2",
+      "subject_section",
+      "opponent_x_m",
+      "opponent_y_m",
+      "opponent_reference_progress_mod_m",
+      "opponent_lateral_offset_ref_m",
+      "opponent_path_speed_mps",
+      "opponent_reference_progress_speed_mps",
+      "opponent_lateral_speed_mps",
+      "opponent_path_tangential_accel_mps2",
+      "opponent_reference_progress_accel_mps2",
+      "opponent_section",
+      "gap_opponent_minus_subject_m",
+      "offset_subject_minus_opponent_m",
+      "euclidean_distance_m",
+      "delta_path_speed_mps",
+      "delta_reference_progress_speed_mps",
+      "delta_lateral_speed_mps",
+      "delta_path_tangential_accel_mps2",
+      "delta_reference_progress_accel_mps2",
+      "euclidean_closing_speed_mps",
+      "relative_heading_diff_rad",
+      "subject_position_valid",
+      "opponent_position_valid",
+      "subject_speed_valid",
+      "opponent_speed_valid",
+      "subject_geometry_valid",
+      "opponent_geometry_valid",
+      "pair_speed_valid",
+      "pair_accel_valid",
+      "pair_geometry_valid",
+      "pair_progress_valid",
+      "pair_quality_flags"
+    ],
+    "pair_count": 20
+  },
+  "sign_conventions": {
+    "gap_opponent_minus_subject_m": "aligned opponent reference_progress_unwrapped_m minus aligned subject reference_progress_unwrapped_m; positive opponent ahead under shared-lap assumption",
+    "offset_subject_minus_opponent_m": "subject - opponent; positive subject further outside",
+    "delta_path_speed_mps": "subject - opponent",
+    "delta_reference_progress_speed_mps": "subject - opponent",
+    "delta_lateral_speed_mps": "subject - opponent",
+    "delta_accelerations": "subject - opponent",
+    "euclidean_closing_speed_mps": "positive approaching; (pB-pA) dot (vA-vB) / |pB-pA|",
+    "relative_heading_diff_rad": "wrap_to_[-pi,pi)(subject_heading - opponent_heading)"
+  },
+  "relative_progress": {
+    "method": "aligned_unwrapped_progress_difference",
+    "formula": "gap = (unwrapped_B - unwrapped_A) + cycle_correction_laps*L",
+    "lap_length_m": 111.11907511102649,
+    "lap_length_source": "source_metadata.track_geometry.reference_lap_length_m",
+    "reference_origin": "upper_straight_midpoint",
+    "alignment_first_run": "integer lap correction nearest to zero at first jointly valid frame",
+    "alignment_later_runs": "integer lap correction nearest to last gap from previous jointly valid run",
+    "gap_magnitude_limited": false,
+    "pair_progress_valid_meaning": "both projected and unwrapped positions finite, with non-ambiguous numerical lap alignment; not a certificate of race rank",
+    "absolute_race_order_available": false,
+    "warning": "Independent single-athlete unwrapped progress resets after geometry invalid gaps. Without a common race-lap anchor, an integer-lap correction is an assumption; actual lapped race order cannot be proven."
+  },
+  "quality_control": {
+    "time_tolerance_s": 0.001,
+    "min_distance_for_closing_m": 0.001,
+    "numeric_invalid_value": "empty_csv_cell",
+    "flag_delimiter": ";",
+    "speed_review_does_not_automatically_invalidate_pair_speed": true,
+    "closing_speed_method": "analytic_derivative_from_each_athlete_velocity_xy",
+    "accel_valid_definition": "both source accel_valid and finite tangential accel",
+    "pair_geometry_valid_definition": "both source geometry_valid and finite progress & lateral offset"
+  },
+  "pairwise_files": {
+    "96_97": {
+      "subject_id": "96",
+      "opponent_id": "97",
+      "csv_file": "subject_96_opponent_97.csv",
+      "statistics": {
+        "frame_range": [
+          645,
+          3055
+        ],
+        "frame_count": 2411,
+        "both_position_valid_frames": 2411,
+        "pair_speed_valid_frames": 2389,
+        "pair_accel_valid_frames": 2387,
+        "pair_geometry_valid_frames": 2411,
+        "pair_progress_valid_frames": 2411,
+        "progress_alignment_runs": [
+          {
+            "start_frame": 645,
+            "end_frame": 3055,
+            "cycle_correction_laps": 0,
+            "anchor_type": "nearest_zero_gap_first_overlap",
+            "alignment_is_race_lap_verified": false,
+            "anchor_ambiguous_half_lap": false
+          }
+        ],
+        "euclidean_closing_speed_valid_frames": 2389,
+        "missing_subject_rows_in_overlap": 0,
+        "missing_opponent_rows_in_overlap": 0,
+        "max_observed_same_frame_time_difference_s": 0.0
+      }
+    },
+    "96_98": {
+      "subject_id": "96",
+      "opponent_id": "98",
+      "csv_file": "subject_96_opponent_98.csv",
+      "statistics": {
+        "frame_range": [
+          645,
+          3055
+        ],
+        "frame_count": 2411,
+        "both_position_valid_frames": 2411,
+        "pair_speed_valid_frames": 2389,
+        "pair_accel_valid_frames": 2387,
+        "pair_geometry_valid_frames": 2411,
+        "pair_progress_valid_frames": 2411,
+        "progress_alignment_runs": [
+          {
+            "start_frame": 645,
+            "end_frame": 3055,
+            "cycle_correction_laps": 0,
+            "anchor_type": "nearest_zero_gap_first_overlap",
+            "alignment_is_race_lap_verified": false,
+            "anchor_ambiguous_half_lap": false
+          }
+        ],
+        "euclidean_closing_speed_valid_frames": 2389,
+        "missing_subject_rows_in_overlap": 0,
+        "missing_opponent_rows_in_overlap": 0,
+        "max_observed_same_frame_time_difference_s": 0.0
+      }
+    },
+    "96_99": {
+      "subject_id": "96",
+      "opponent_id": "99",
+      "csv_file": "subject_96_opponent_99.csv",
+      "statistics": {
+        "frame_range": [
+          649,
+          3055
+        ],
+        "frame_count": 2407,
+        "both_position_valid_frames": 2407,
+        "pair_speed_valid_frames": 2385,
+        "pair_accel_valid_frames": 2383,
+        "pair_geometry_valid_frames": 2407,
+        "pair_progress_valid_frames": 2407,
+        "progress_alignment_runs": [
+          {
+            "start_frame": 649,
+            "end_frame": 3055,
+            "cycle_correction_laps": 0,
+            "anchor_type": "nearest_zero_gap_first_overlap",
+            "alignment_is_race_lap_verified": false,
+            "anchor_ambiguous_half_lap": false
+          }
+        ],
+        "euclidean_closing_speed_valid_frames": 2385,
+        "missing_subject_rows_in_overlap": 0,
+        "missing_opponent_rows_in_overlap": 0,
+        "max_observed_same_frame_time_difference_s": 0.0
+      }
+    },
+    "96_100": {
+      "subject_id": "96",
+      "opponent_id": "100",
+      "csv_file": "subject_96_opponent_100.csv",
+      "statistics": {
+        "frame_range": [
+          660,
+          3055
+        ],
+        "frame_count": 2396,
+        "both_position_valid_frames": 2396,
+        "pair_speed_valid_frames": 2374,
+        "pair_accel_valid_frames": 2372,
+        "pair_geometry_valid_frames": 2396,
+        "pair_progress_valid_frames": 2396,
+        "progress_alignment_runs": [
+          {
+            "start_frame": 660,
+            "end_frame": 3055,
+            "cycle_correction_laps": 0,
+            "anchor_type": "nearest_zero_gap_first_overlap",
+            "alignment_is_race_lap_verified": false,
+            "anchor_ambiguous_half_lap": false
+          }
+        ],
+        "euclidean_closing_speed_valid_frames": 2374,
+        "missing_subject_rows_in_overlap": 0,
+        "missing_opponent_rows_in_overlap": 0,
+        "max_observed_same_frame_time_difference_s": 0.0
+      }
+    },
+    "97_96": {
+      "subject_id": "97",
+      "opponent_id": "96",
+      "csv_file": "subject_97_opponent_96.csv",
+      "statistics": {
+        "frame_range": [
+          645,
+          3055
+        ],
+        "frame_count": 2411,
+        "both_position_valid_frames": 2411,
+        "pair_speed_valid_frames": 2389,
+        "pair_accel_valid_frames": 2387,
+        "pair_geometry_valid_frames": 2411,
+        "pair_progress_valid_frames": 2411,
+        "progress_alignment_runs": [
+          {
+            "start_frame": 645,
+            "end_frame": 3055,
+            "cycle_correction_laps": 0,
+            "anchor_type": "nearest_zero_gap_first_overlap",
+            "alignment_is_race_lap_verified": false,
+            "anchor_ambiguous_half_lap": false
+          }
+        ],
+        "euclidean_closing_speed_valid_frames": 2389,
+        "missing_subject_rows_in_overlap": 0,
+        "missing_opponent_rows_in_overlap": 0,
+        "max_observed_same_frame_time_difference_s": 0.0
+      }
+    },
+    "97_98": {
+      "subject_id": "97",
+      "opponent_id": "98",
+      "csv_file": "subject_97_opponent_98.csv",
+      "statistics": {
+        "frame_range": [
+          645,
+          3055
+        ],
+        "frame_count": 2411,
+        "both_position_valid_frames": 2411,
+        "pair_speed_valid_frames": 2389,
+        "pair_accel_valid_frames": 2387,
+        "pair_geometry_valid_frames": 2411,
+        "pair_progress_valid_frames": 2411,
+        "progress_alignment_runs": [
+          {
+            "start_frame": 645,
+            "end_frame": 3055,
+            "cycle_correction_laps": 0,
+            "anchor_type": "nearest_zero_gap_first_overlap",
+            "alignment_is_race_lap_verified": false,
+            "anchor_ambiguous_half_lap": false
+          }
+        ],
+        "euclidean_closing_speed_valid_frames": 2389,
+        "missing_subject_rows_in_overlap": 0,
+        "missing_opponent_rows_in_overlap": 0,
+        "max_observed_same_frame_time_difference_s": 0.0
+      }
+    },
+    "97_99": {
+      "subject_id": "97",
+      "opponent_id": "99",
+      "csv_file": "subject_97_opponent_99.csv",
+      "statistics": {
+        "frame_range": [
+          649,
+          3055
+        ],
+        "frame_count": 2407,
+        "both_position_valid_frames": 2407,
+        "pair_speed_valid_frames": 2385,
+        "pair_accel_valid_frames": 2383,
+        "pair_geometry_valid_frames": 2407,
+        "pair_progress_valid_frames": 2407,
+        "progress_alignment_runs": [
+          {
+            "start_frame": 649,
+            "end_frame": 3055,
+            "cycle_correction_laps": 0,
+            "anchor_type": "nearest_zero_gap_first_overlap",
+            "alignment_is_race_lap_verified": false,
+            "anchor_ambiguous_half_lap": false
+          }
+        ],
+        "euclidean_closing_speed_valid_frames": 2385,
+        "missing_subject_rows_in_overlap": 0,
+        "missing_opponent_rows_in_overlap": 0,
+        "max_observed_same_frame_time_difference_s": 0.0
+      }
+    },
+    "97_100": {
+      "subject_id": "97",
+      "opponent_id": "100",
+      "csv_file": "subject_97_opponent_100.csv",
+      "statistics": {
+        "frame_range": [
+          660,
+          3055
+        ],
+        "frame_count": 2396,
+        "both_position_valid_frames": 2396,
+        "pair_speed_valid_frames": 2374,
+        "pair_accel_valid_frames": 2372,
+        "pair_geometry_valid_frames": 2396,
+        "pair_progress_valid_frames": 2396,
+        "progress_alignment_runs": [
+          {
+            "start_frame": 660,
+            "end_frame": 3055,
+            "cycle_correction_laps": 0,
+            "anchor_type": "nearest_zero_gap_first_overlap",
+            "alignment_is_race_lap_verified": false,
+            "anchor_ambiguous_half_lap": false
+          }
+        ],
+        "euclidean_closing_speed_valid_frames": 2374,
+        "missing_subject_rows_in_overlap": 0,
+        "missing_opponent_rows_in_overlap": 0,
+        "max_observed_same_frame_time_difference_s": 0.0
+      }
+    },
+    "98_96": {
+      "subject_id": "98",
+      "opponent_id": "96",
+      "csv_file": "subject_98_opponent_96.csv",
+      "statistics": {
+        "frame_range": [
+          645,
+          3055
+        ],
+        "frame_count": 2411,
+        "both_position_valid_frames": 2411,
+        "pair_speed_valid_frames": 2389,
+        "pair_accel_valid_frames": 2387,
+        "pair_geometry_valid_frames": 2411,
+        "pair_progress_valid_frames": 2411,
+        "progress_alignment_runs": [
+          {
+            "start_frame": 645,
+            "end_frame": 3055,
+            "cycle_correction_laps": 0,
+            "anchor_type": "nearest_zero_gap_first_overlap",
+            "alignment_is_race_lap_verified": false,
+            "anchor_ambiguous_half_lap": false
+          }
+        ],
+        "euclidean_closing_speed_valid_frames": 2389,
+        "missing_subject_rows_in_overlap": 0,
+        "missing_opponent_rows_in_overlap": 0,
+        "max_observed_same_frame_time_difference_s": 0.0
+      }
+    },
+    "98_97": {
+      "subject_id": "98",
+      "opponent_id": "97",
+      "csv_file": "subject_98_opponent_97.csv",
+      "statistics": {
+        "frame_range": [
+          645,
+          3055
+        ],
+        "frame_count": 2411,
+        "both_position_valid_frames": 2411,
+        "pair_speed_valid_frames": 2389,
+        "pair_accel_valid_frames": 2387,
+        "pair_geometry_valid_frames": 2411,
+        "pair_progress_valid_frames": 2411,
+        "progress_alignment_runs": [
+          {
+            "start_frame": 645,
+            "end_frame": 3055,
+            "cycle_correction_laps": 0,
+            "anchor_type": "nearest_zero_gap_first_overlap",
+            "alignment_is_race_lap_verified": false,
+            "anchor_ambiguous_half_lap": false
+          }
+        ],
+        "euclidean_closing_speed_valid_frames": 2389,
+        "missing_subject_rows_in_overlap": 0,
+        "missing_opponent_rows_in_overlap": 0,
+        "max_observed_same_frame_time_difference_s": 0.0
+      }
+    },
+    "98_99": {
+      "subject_id": "98",
+      "opponent_id": "99",
+      "csv_file": "subject_98_opponent_99.csv",
+      "statistics": {
+        "frame_range": [
+          649,
+          3055
+        ],
+        "frame_count": 2407,
+        "both_position_valid_frames": 2407,
+        "pair_speed_valid_frames": 2385,
+        "pair_accel_valid_frames": 2383,
+        "pair_geometry_valid_frames": 2407,
+        "pair_progress_valid_frames": 2407,
+        "progress_alignment_runs": [
+          {
+            "start_frame": 649,
+            "end_frame": 3055,
+            "cycle_correction_laps": 0,
+            "anchor_type": "nearest_zero_gap_first_overlap",
+            "alignment_is_race_lap_verified": false,
+            "anchor_ambiguous_half_lap": false
+          }
+        ],
+        "euclidean_closing_speed_valid_frames": 2385,
+        "missing_subject_rows_in_overlap": 0,
+        "missing_opponent_rows_in_overlap": 0,
+        "max_observed_same_frame_time_difference_s": 0.0
+      }
+    },
+    "98_100": {
+      "subject_id": "98",
+      "opponent_id": "100",
+      "csv_file": "subject_98_opponent_100.csv",
+      "statistics": {
+        "frame_range": [
+          660,
+          3055
+        ],
+        "frame_count": 2396,
+        "both_position_valid_frames": 2396,
+        "pair_speed_valid_frames": 2374,
+        "pair_accel_valid_frames": 2372,
+        "pair_geometry_valid_frames": 2396,
+        "pair_progress_valid_frames": 2396,
+        "progress_alignment_runs": [
+          {
+            "start_frame": 660,
+            "end_frame": 3055,
+            "cycle_correction_laps": 0,
+            "anchor_type": "nearest_zero_gap_first_overlap",
+            "alignment_is_race_lap_verified": false,
+            "anchor_ambiguous_half_lap": false
+          }
+        ],
+        "euclidean_closing_speed_valid_frames": 2374,
+        "missing_subject_rows_in_overlap": 0,
+        "missing_opponent_rows_in_overlap": 0,
+        "max_observed_same_frame_time_difference_s": 0.0
+      }
+    },
+    "99_96": {
+      "subject_id": "99",
+      "opponent_id": "96",
+      "csv_file": "subject_99_opponent_96.csv",
+      "statistics": {
+        "frame_range": [
+          649,
+          3055
+        ],
+        "frame_count": 2407,
+        "both_position_valid_frames": 2407,
+        "pair_speed_valid_frames": 2385,
+        "pair_accel_valid_frames": 2383,
+        "pair_geometry_valid_frames": 2407,
+        "pair_progress_valid_frames": 2407,
+        "progress_alignment_runs": [
+          {
+            "start_frame": 649,
+            "end_frame": 3055,
+            "cycle_correction_laps": 0,
+            "anchor_type": "nearest_zero_gap_first_overlap",
+            "alignment_is_race_lap_verified": false,
+            "anchor_ambiguous_half_lap": false
+          }
+        ],
+        "euclidean_closing_speed_valid_frames": 2385,
+        "missing_subject_rows_in_overlap": 0,
+        "missing_opponent_rows_in_overlap": 0,
+        "max_observed_same_frame_time_difference_s": 0.0
+      }
+    },
+    "99_97": {
+      "subject_id": "99",
+      "opponent_id": "97",
+      "csv_file": "subject_99_opponent_97.csv",
+      "statistics": {
+        "frame_range": [
+          649,
+          3055
+        ],
+        "frame_count": 2407,
+        "both_position_valid_frames": 2407,
+        "pair_speed_valid_frames": 2385,
+        "pair_accel_valid_frames": 2383,
+        "pair_geometry_valid_frames": 2407,
+        "pair_progress_valid_frames": 2407,
+        "progress_alignment_runs": [
+          {
+            "start_frame": 649,
+            "end_frame": 3055,
+            "cycle_correction_laps": 0,
+            "anchor_type": "nearest_zero_gap_first_overlap",
+            "alignment_is_race_lap_verified": false,
+            "anchor_ambiguous_half_lap": false
+          }
+        ],
+        "euclidean_closing_speed_valid_frames": 2385,
+        "missing_subject_rows_in_overlap": 0,
+        "missing_opponent_rows_in_overlap": 0,
+        "max_observed_same_frame_time_difference_s": 0.0
+      }
+    },
+    "99_98": {
+      "subject_id": "99",
+      "opponent_id": "98",
+      "csv_file": "subject_99_opponent_98.csv",
+      "statistics": {
+        "frame_range": [
+          649,
+          3055
+        ],
+        "frame_count": 2407,
+        "both_position_valid_frames": 2407,
+        "pair_speed_valid_frames": 2385,
+        "pair_accel_valid_frames": 2383,
+        "pair_geometry_valid_frames": 2407,
+        "pair_progress_valid_frames": 2407,
+        "progress_alignment_runs": [
+          {
+            "start_frame": 649,
+            "end_frame": 3055,
+            "cycle_correction_laps": 0,
+            "anchor_type": "nearest_zero_gap_first_overlap",
+            "alignment_is_race_lap_verified": false,
+            "anchor_ambiguous_half_lap": false
+          }
+        ],
+        "euclidean_closing_speed_valid_frames": 2385,
+        "missing_subject_rows_in_overlap": 0,
+        "missing_opponent_rows_in_overlap": 0,
+        "max_observed_same_frame_time_difference_s": 0.0
+      }
+    },
+    "99_100": {
+      "subject_id": "99",
+      "opponent_id": "100",
+      "csv_file": "subject_99_opponent_100.csv",
+      "statistics": {
+        "frame_range": [
+          660,
+          3055
+        ],
+        "frame_count": 2396,
+        "both_position_valid_frames": 2396,
+        "pair_speed_valid_frames": 2374,
+        "pair_accel_valid_frames": 2372,
+        "pair_geometry_valid_frames": 2396,
+        "pair_progress_valid_frames": 2396,
+        "progress_alignment_runs": [
+          {
+            "start_frame": 660,
+            "end_frame": 3055,
+            "cycle_correction_laps": 0,
+            "anchor_type": "nearest_zero_gap_first_overlap",
+            "alignment_is_race_lap_verified": false,
+            "anchor_ambiguous_half_lap": false
+          }
+        ],
+        "euclidean_closing_speed_valid_frames": 2374,
+        "missing_subject_rows_in_overlap": 0,
+        "missing_opponent_rows_in_overlap": 0,
+        "max_observed_same_frame_time_difference_s": 0.0
+      }
+    },
+    "100_96": {
+      "subject_id": "100",
+      "opponent_id": "96",
+      "csv_file": "subject_100_opponent_96.csv",
+      "statistics": {
+        "frame_range": [
+          660,
+          3055
+        ],
+        "frame_count": 2396,
+        "both_position_valid_frames": 2396,
+        "pair_speed_valid_frames": 2374,
+        "pair_accel_valid_frames": 2372,
+        "pair_geometry_valid_frames": 2396,
+        "pair_progress_valid_frames": 2396,
+        "progress_alignment_runs": [
+          {
+            "start_frame": 660,
+            "end_frame": 3055,
+            "cycle_correction_laps": 0,
+            "anchor_type": "nearest_zero_gap_first_overlap",
+            "alignment_is_race_lap_verified": false,
+            "anchor_ambiguous_half_lap": false
+          }
+        ],
+        "euclidean_closing_speed_valid_frames": 2374,
+        "missing_subject_rows_in_overlap": 0,
+        "missing_opponent_rows_in_overlap": 0,
+        "max_observed_same_frame_time_difference_s": 0.0
+      }
+    },
+    "100_97": {
+      "subject_id": "100",
+      "opponent_id": "97",
+      "csv_file": "subject_100_opponent_97.csv",
+      "statistics": {
+        "frame_range": [
+          660,
+          3055
+        ],
+        "frame_count": 2396,
+        "both_position_valid_frames": 2396,
+        "pair_speed_valid_frames": 2374,
+        "pair_accel_valid_frames": 2372,
+        "pair_geometry_valid_frames": 2396,
+        "pair_progress_valid_frames": 2396,
+        "progress_alignment_runs": [
+          {
+            "start_frame": 660,
+            "end_frame": 3055,
+            "cycle_correction_laps": 0,
+            "anchor_type": "nearest_zero_gap_first_overlap",
+            "alignment_is_race_lap_verified": false,
+            "anchor_ambiguous_half_lap": false
+          }
+        ],
+        "euclidean_closing_speed_valid_frames": 2374,
+        "missing_subject_rows_in_overlap": 0,
+        "missing_opponent_rows_in_overlap": 0,
+        "max_observed_same_frame_time_difference_s": 0.0
+      }
+    },
+    "100_98": {
+      "subject_id": "100",
+      "opponent_id": "98",
+      "csv_file": "subject_100_opponent_98.csv",
+      "statistics": {
+        "frame_range": [
+          660,
+          3055
+        ],
+        "frame_count": 2396,
+        "both_position_valid_frames": 2396,
+        "pair_speed_valid_frames": 2374,
+        "pair_accel_valid_frames": 2372,
+        "pair_geometry_valid_frames": 2396,
+        "pair_progress_valid_frames": 2396,
+        "progress_alignment_runs": [
+          {
+            "start_frame": 660,
+            "end_frame": 3055,
+            "cycle_correction_laps": 0,
+            "anchor_type": "nearest_zero_gap_first_overlap",
+            "alignment_is_race_lap_verified": false,
+            "anchor_ambiguous_half_lap": false
+          }
+        ],
+        "euclidean_closing_speed_valid_frames": 2374,
+        "missing_subject_rows_in_overlap": 0,
+        "missing_opponent_rows_in_overlap": 0,
+        "max_observed_same_frame_time_difference_s": 0.0
+      }
+    },
+    "100_99": {
+      "subject_id": "100",
+      "opponent_id": "99",
+      "csv_file": "subject_100_opponent_99.csv",
+      "statistics": {
+        "frame_range": [
+          660,
+          3055
+        ],
+        "frame_count": 2396,
+        "both_position_valid_frames": 2396,
+        "pair_speed_valid_frames": 2374,
+        "pair_accel_valid_frames": 2372,
+        "pair_geometry_valid_frames": 2396,
+        "pair_progress_valid_frames": 2396,
+        "progress_alignment_runs": [
+          {
+            "start_frame": 660,
+            "end_frame": 3055,
+            "cycle_correction_laps": 0,
+            "anchor_type": "nearest_zero_gap_first_overlap",
+            "alignment_is_race_lap_verified": false,
+            "anchor_ambiguous_half_lap": false
+          }
+        ],
+        "euclidean_closing_speed_valid_frames": 2374,
+        "missing_subject_rows_in_overlap": 0,
+        "missing_opponent_rows_in_overlap": 0,
+        "max_observed_same_frame_time_difference_s": 0.0
+      }
+    }
+  }
+}

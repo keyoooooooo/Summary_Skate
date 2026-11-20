@@ -1,0 +1,481 @@
+{
+  "schema_version": "ablation_A_v1.2_anonymous",
+  "group": "A",
+  "window_mode": "fixed",
+  "run_metadata": {
+    "created_at_utc": "2026-11-20T13:21:34+00:00",
+    "updated_at_utc": "2026-11-20T13:22:02+00:00",
+    "config_hash": "ecbf64ff8d8671de92a9436ce93796a973ead12a5d9a60e4709d0759abb96e89",
+    "config": {
+      "script_version": "ablation_A_v1.2_anonymous",
+      "prompt_version": "expert_event_summary_prompt_V2_anonymous_AB",
+      "csv_dir": "/data/coding/CSV",
+      "annotations": "/data/coding/CSV/expert_annotations.json",
+      "annotations_sha256": "23b80546c712d9de404e7e58943036ef4fc35c8dc24efa998488dd4c5be875e7",
+      "window_mode": "fixed",
+      "fixed_window_s": 4.0,
+      "sample_points": 41,
+      "retrieval_query_field": "summary",
+      "exclude_reviewed_speed": true,
+      "model": "Qwen3.8-27B-FP8",
+      "base_url": "http://127.0.0.1:8000/v1",
+      "temperature": 0.1,
+      "max_output_tokens": 1536,
+      "enable_thinking": false,
+      "json_mode": true,
+      "seed": null,
+      "pair_fields": [
+        "gap_opponent_minus_subject_m",
+        "offset_subject_minus_opponent_m",
+        "subject_section",
+        "opponent_section",
+        "delta_path_speed_mps",
+        "delta_reference_progress_speed_mps"
+      ],
+      "single_fields": [
+        "position_x_m",
+        "position_y_m",
+        "velocity_x_mps",
+        "velocity_y_mps",
+        "path_speed_mps",
+        "path_tangential_accel_mps2",
+        "heading_rad",
+        "yaw_rate_radps",
+        "curvature_inv_m",
+        "lateral_offset_ref_m",
+        "lateral_speed_mps",
+        "lateral_accel_mps2",
+        "reference_progress_speed_mps",
+        "section"
+      ]
+    },
+    "note": "专家标签及运动员真实姓名仅保存在事件metadata；LLM输入与摘要均匿名使用A/B；运动学摘要仅由LLM生成，未加入程序化统计；后续检索统一编码匿名parsed_response.summary；system及user prompt参考expert_event_summary(2).py Prompt V2"
+  },
+  "experiments": {
+    "A1": {
+      "experiment_id": "A1",
+      "description": "仅双人F1数值序列，直接生成双人运动学摘要",
+      "settings": {
+        "pair_fields": [
+          "gap_opponent_minus_subject_m",
+          "offset_subject_minus_opponent_m",
+          "subject_section",
+          "opponent_section",
+          "delta_path_speed_mps",
+          "delta_reference_progress_speed_mps"
+        ],
+        "single_fields": [],
+        "single_mode": "none",
+        "sample_points": 41,
+        "window_mode": "fixed"
+      },
+      "events": {
+        "C001": {
+          "metadata": {
+            "event_id": "C001",
+            "race_id": "beijing_owg_2022_f500_fa",
+            "subject": {
+              "athlete_id": "98",
+              "name": "FONTANA Arianna"
+            },
+            "opponent": {
+              "athlete_id": "96",
+              "name": "SCHULTING Suzanne"
+            },
+            "athlete_aliases": {
+              "A": {
+                "athlete_id": "98",
+                "name": "FONTANA Arianna"
+              },
+              "B": {
+                "athlete_id": "96",
+                "name": "SCHULTING Suzanne"
+              }
+            },
+            "ground_truth_expert_interval": {
+              "start_frame": 2022,
+              "end_frame": 2136,
+              "action_code": "ATTACK_SWITCH_LINE",
+              "event_layer": "COMPOSITE",
+              "outcome_code": "GAIN_MAINTAINED",
+              "key_frame": 2091,
+              "key_frame_role": "OVERTAKE_CONFIRMATION_NOT_SWITCH_FRAME",
+              "window_duration_s": 2.28
+            },
+            "input_window": {
+              "start_frame": 1979,
+              "end_frame": 2179,
+              "duration_s": 4.0,
+              "sampled_raw_frame_span": 201,
+              "expert_start_frame": 2022,
+              "expert_end_frame": 2136,
+              "expert_duration_s": 2.28,
+              "window_mode": "fixed"
+            },
+            "fps": 50.0,
+            "csv_sources": {
+              "pairwise": "/data/coding/CSV/beijing_owg_2022_f500_fa/pairwise/subject_98_opponent_96.csv",
+              "subject_single": "/data/coding/CSV/beijing_owg_2022_f500_fa/athlete_98.csv",
+              "opponent_single": "/data/coding/CSV/beijing_owg_2022_f500_fa/athlete_96.csv",
+              "race_metadata": "/data/coding/CSV/beijing_owg_2022_f500_fa/metadata.json"
+            },
+            "csv_file_signatures": {
+              "pairwise": {
+                "bytes": 1022527,
+                "mtime_ns": 1795178801536016014
+              },
+              "subject_single": {
+                "bytes": 838772,
+                "mtime_ns": 1795178796497015200
+              },
+              "opponent_single": {
+                "bytes": 844978,
+                "mtime_ns": 1795178796768015244
+              },
+              "race_metadata": {
+                "bytes": 13772,
+                "mtime_ns": 1795178796967015276
+              }
+            },
+            "sampling": {
+              "pair": {
+                "sample_count": 41,
+                "sampled_frames": [
+                  1979,
+                  1984,
+                  1989,
+                  1994,
+                  1999,
+                  2004,
+                  2009,
+                  2014,
+                  2019,
+                  2024,
+                  2029,
+                  2034,
+                  2039,
+                  2044,
+                  2049,
+                  2054,
+                  2059,
+                  2064,
+                  2069,
+                  2074,
+                  2079,
+                  2084,
+                  2089,
+                  2094,
+                  2099,
+                  2104,
+                  2109,
+                  2114,
+                  2119,
+                  2124,
+                  2129,
+                  2134,
+                  2139,
+                  2144,
+                  2149,
+                  2154,
+                  2159,
+                  2164,
+                  2169,
+                  2174,
+                  2179
+                ],
+                "missing_source_frames": [],
+                "valid_field_counts": {
+                  "gap_opponent_minus_subject_m": 41,
+                  "offset_subject_minus_opponent_m": 41,
+                  "subject_section": 41,
+                  "opponent_section": 41,
+                  "delta_path_speed_mps": 34,
+                  "delta_reference_progress_speed_mps": 34
+                }
+              },
+              "subject": {
+                "sample_count": 41,
+                "sampled_frames": [
+                  1979,
+                  1984,
+                  1989,
+                  1994,
+                  1999,
+                  2004,
+                  2009,
+                  2014,
+                  2019,
+                  2024,
+                  2029,
+                  2034,
+                  2039,
+                  2044,
+                  2049,
+                  2054,
+                  2059,
+                  2064,
+                  2069,
+                  2074,
+                  2079,
+                  2084,
+                  2089,
+                  2094,
+                  2099,
+                  2104,
+                  2109,
+                  2114,
+                  2119,
+                  2124,
+                  2129,
+                  2134,
+                  2139,
+                  2144,
+                  2149,
+                  2154,
+                  2159,
+                  2164,
+                  2169,
+                  2174,
+                  2179
+                ],
+                "missing_source_frames": [],
+                "valid_field_counts": {
+                  "position_x_m": 41,
+                  "position_y_m": 41,
+                  "velocity_x_mps": 34,
+                  "velocity_y_mps": 34,
+                  "path_speed_mps": 34,
+                  "path_tangential_accel_mps2": 34,
+                  "heading_rad": 34,
+                  "yaw_rate_radps": 34,
+                  "curvature_inv_m": 34,
+                  "lateral_offset_ref_m": 41,
+                  "lateral_speed_mps": 34,
+                  "lateral_accel_mps2": 34,
+                  "reference_progress_speed_mps": 34,
+                  "section": 41
+                }
+              },
+              "opponent": {
+                "sample_count": 41,
+                "sampled_frames": [
+                  1979,
+                  1984,
+                  1989,
+                  1994,
+                  1999,
+                  2004,
+                  2009,
+                  2014,
+                  2019,
+                  2024,
+                  2029,
+                  2034,
+                  2039,
+                  2044,
+                  2049,
+                  2054,
+                  2059,
+                  2064,
+                  2069,
+                  2074,
+                  2079,
+                  2084,
+                  2089,
+                  2094,
+                  2099,
+                  2104,
+                  2109,
+                  2114,
+                  2119,
+                  2124,
+                  2129,
+                  2134,
+                  2139,
+                  2144,
+                  2149,
+                  2154,
+                  2159,
+                  2164,
+                  2169,
+                  2174,
+                  2179
+                ],
+                "missing_source_frames": [],
+                "valid_field_counts": {
+                  "position_x_m": 41,
+                  "position_y_m": 41,
+                  "velocity_x_mps": 39,
+                  "velocity_y_mps": 39,
+                  "path_speed_mps": 39,
+                  "path_tangential_accel_mps2": 39,
+                  "heading_rad": 39,
+                  "yaw_rate_radps": 39,
+                  "curvature_inv_m": 39,
+                  "lateral_offset_ref_m": 41,
+                  "lateral_speed_mps": 39,
+                  "lateral_accel_mps2": 39,
+                  "reference_progress_speed_mps": 39,
+                  "section": 41
+                }
+              }
+            }
+          },
+          "repeats": {
+            "1": {
+              "status": "success",
+              "single_calls": {},
+              "pair_call": {
+                "request": {
+                  "role": "pair",
+                  "stage": "pair",
+                  "prompt_sha256": "50810acc92d06299e4cd28a251789601e5c86cc448cc3dc4052f945e7f03e6c0",
+                  "system_prompt": "你是一名短道速滑运动学观察描述助手。请将双人二维轨迹的数值时序数据，转化为客观、连贯、便于与官方规则和战术知识文本进行语义检索的中文自然语言描述。\n\n你的任务是描述“观察到的相对运动过程”，不是解释数据表格，不是识别战术，也不是判定比赛行为是否合规。\n\n【描述重点】\n1. 前后关系：双方谁在前、谁在后；间隔是缩小、扩大还是大致稳定；是否由落后变为领先，以及变化发生的先后顺序。\n2. 内外侧关系：双方的相对内外侧位置、横向间隔变化、相对位置是否反转。相对偏移发生变化，不代表一定是某一名运动员独自移动；不要擅自归因。\n3. 速度关系：区分实际滑行路径上的速度与沿赛道前进方向的进度速度；只有数据有效且支持时，才描述某人沿赛道前进方向移动得更快或双方速度接近。\n4. 场地与过程：将赛道区段自然表述为“直道”“弯道”“从直道进入弯道”等，保留运动变化发生的时间顺序。\n\n【自然语言表达要求——仅约束输出内容】\n1. 所有描述性文本应以自然中文表达运动过程；运动员只能用A和B表示，禁止出现任何真实姓名。不要照抄输入中的字段名、变量名、英文缩写、带下划线的特征名或数学比较式。例如不要出现 gap_m、offset_m、delta_v_ref、section_A、>0、<0 等。\n2. 将数据转换为运动过程语言：如“两人之间的前后间隔逐渐缩小”“A从B后方移动到前方”“A相对B更靠赛道内侧”“双方横向间隔缩小”等。只能在数据支持时采用这些措辞。\n3. 优先描述“原有位置—变化过程—最终关系”，避免像数据报告一样逐项列出首值、末值、极值。\n4. 允许为关键时刻、阶段和证据保留少量精确时间、距离或速度数值（使用秒、米、米/秒等自然单位），但不能用变量名介绍数值。\n5. 不要把首末两点的差异误写为全程单调、持续、平稳的变化。没有足够中间证据时使用“整体呈……趋势”等谨慎表达。\n6. 不要重复相同事实，也不要强行将连续运动分成固定数量的阶段。\n\n【事实与边界约束】\n1. 只能使用输入中可核验的相对位置、速度、赛道区段和时间顺序；不得推断未观察到的动作、身体接触、意图、犯规、责任或比赛结果。\n2. 禁止直接输出战术标签，如“内线进攻”“外线进攻”“换线再进攻”“跟滑战术”“依靠速度守位”等。可描述相对领先关系的变化，但不得凭此宣称“成功完成某种战术”。\n3. A、B 是匿名运动员角色，不提供运动员真实姓名；A并不必然代表战术进攻者。所有输出字段，包括summary、phases的description/evidence、key_observations、uncertainties，均只使用A/B。根据显式提供的前后、内外侧符号约定判断相对位置，不要猜测。\n4. 标记为无效或需复核的速度数据不能作为可靠依据；输入null或NA为缺失，不是零；无法确认时不要补造。\n5. 截取窗口边界并不等于真实运动行为的开始和结束；阶段划分只表示观察到的运动变化。\n6. 若证据不充分，应简要说明缺失的条件，而非输出猜测或无意义的泛化声明。\n\n【JSON 输出格式】\n只输出一个合法 JSON 对象，不输出 Markdown、解释或思考过程。必须保留以下字段名以供程序解析；字段的文本内容须满足上述自然语言要求。\n{\n  \"summary\": \"100～180字左右，连贯描述整体运动过程，优先保留前后、内外侧、速度和场地区段变化\",\n  \"phases\": [\n    {\n      \"time_range_s\": [0.0, 1.0],\n      \"description\": \"这一阶段的自然语言运动描述\",\n      \"evidence\": \"用自然中文描述可核验的支持证据，必要时引用时间或数值，不能出现输入变量名\"\n    }\n  ],\n  \"key_observations\": [\"最多5条不同的关键运动学观察，均用自然中文表述\"],\n  \"uncertainties\": [\"仅列出会影响判断的实质性数据限制或不确定性；没有则返回空数组\"]\n}\n",
+                  "user_prompt": "请客观概括下面一组短道速滑运动员 A、B 的双人时序数据。\n\n【角色与时间】\nA和B均为匿名观察对象，不提供真实姓名；A/B角色并不表示谁发动战术。\n相对观察时间：0.00～4.00 秒。截取片段的边界不等于真实行为边界。\n\n【变量定义与符号约定】\n- gap_opponent_minus_subject_m：B减A的已对齐连续参考进度差（米）；正值表示B沿赛道参考进度领先A，负值表示A领先B；这不是经裁判确认的比赛名次。\n- offset_subject_minus_opponent_m：A减B的参考线横向偏移差（米）；正值表示A相对B更靠外侧，负值表示A相对B更靠内侧。\n- delta_path_speed_mps：A减B的实际运动路径速度差（米/秒）。\n- delta_reference_progress_speed_mps：A减B的赛道前进方向速度差（米/秒）；这与路径速度差不是同一物理量。\n- subject_section/opponent_section：A/B的赛道几何区段，只代表场地位置，不代表战术。\n- t_s：观察窗口起点后的相对时间（秒）；null表示字段无效或缺失，不能当成0。\n\n【按时间抽取的代表性采样点；共 41 个】\n表格JSON的columns表示每列变量，rows按时间先后排列：\n{\"columns\":[\"t_s\",\"gap_opponent_minus_subject_m\",\"offset_subject_minus_opponent_m\",\"subject_section\",\"opponent_section\",\"delta_path_speed_mps\",\"delta_reference_progress_speed_mps\"],\"rows\":[[0.0,1.196578,0.508556,\"lower_straight\",\"lower_straight\",0.404029,0.054446],[0.1,1.187178,0.623067,\"lower_straight\",\"lower_straight\",0.308583,0.135642],[0.2,1.168698,0.696848,\"lower_straight\",\"lower_straight\",0.333489,0.267141],[0.3,1.130566,0.730216,\"lower_straight\",\"lower_straight\",0.606116,0.60051],[0.4,1.088562,0.731859,\"lower_straight\",\"lower_straight\",0.057051,0.057632],[0.5,1.076081,0.729694,\"lower_straight\",\"lower_straight\",0.21417,0.212695],[0.6,1.045335,0.723708,\"lower_straight\",\"lower_straight\",0.399382,0.394504],[0.7,0.992404,0.704337,\"lower_straight\",\"lower_straight\",0.502601,0.495757],[0.8,0.998382,0.748359,\"lower_straight\",\"lower_straight\",-0.640366,-0.519675],[0.9,0.984014,0.739889,\"lower_straight\",\"lower_straight\",0.928198,0.711896],[1.0,0.982479,0.576819,\"lower_straight\",\"lower_straight\",-0.174585,-0.348579],[1.1,1.020832,0.292499,\"lower_straight\",\"lower_straight\",-0.116386,-0.314696],[1.2,1.042094,-0.013004,\"lower_straight\",\"lower_straight\",0.57002,0.337198],[1.3,0.900257,-0.442455,\"lower_straight\",\"lower_straight\",1.754256,1.644367],[1.4,0.811104,-0.796674,\"lower_straight\",\"lower_straight\",null,null],[1.5,0.80592,-1.106979,\"lower_straight\",\"lower_straight\",null,null],[1.6,0.838398,-1.291424,\"lower_straight\",\"lower_straight\",null,null],[1.7,0.819714,-1.373165,\"lower_straight\",\"lower_straight\",null,null],[1.8,0.775838,-1.411717,\"lower_straight\",\"lower_straight\",null,null],[1.9,0.757676,-1.356519,\"lower_straight\",\"lower_end_of_straight\",null,null],[2.0,0.730943,-1.247701,\"lower_end_of_straight\",\"lower_end_of_straight\",0.23413,0.37126],[2.1,0.67512,-1.15423,\"lower_end_of_straight\",\"lower_end_of_straight\",0.49102,0.921288],[2.2,0.500147,-1.088666,\"lower_end_of_straight\",\"lower_end_of_straight\",null,null],[2.3,0.29005,-0.990364,\"lower_end_of_straight\",\"lower_end_of_straight\",0.524039,2.262635],[2.4,0.069612,-0.921209,\"lower_end_of_straight\",\"lower_end_of_straight\",0.757662,2.388416],[2.5,-0.194886,-0.865239,\"right_curve\",\"right_curve\",0.992616,2.641325],[2.6,-0.42095,-0.773814,\"right_curve\",\"right_curve\",0.263602,1.659225],[2.7,-0.540992,-0.69399,\"right_curve\",\"right_curve\",-0.260787,0.944794],[2.8,-0.636317,-0.652974,\"right_curve\",\"right_curve\",-0.132475,0.948313],[2.9,-0.707551,-0.574455,\"right_curve\",\"right_curve\",-0.331447,0.446066],[3.0,-0.773691,-0.425998,\"right_curve\",\"right_curve\",0.132782,0.5272],[3.1,-0.805318,-0.263126,\"right_curve\",\"right_curve\",0.011734,0.139413],[3.2,-0.813257,-0.160461,\"right_curve\",\"right_curve\",-0.32664,-0.207442],[3.3,-0.777623,-0.11239,\"right_curve\",\"right_curve\",-0.275427,-0.215655],[3.4,-0.776273,-0.010828,\"right_curve\",\"right_curve\",0.057045,-0.07864],[3.5,-0.754528,0.086208,\"right_curve\",\"right_curve\",-0.239968,-0.403602],[3.6,-0.70845,0.143538,\"right_curve\",\"right_curve\",-0.348817,-0.546088],[3.7,-0.677006,0.254156,\"right_curve\",\"right_curve\",0.329358,-0.090682],[3.8,-0.67781,0.421415,\"right_curve\",\"right_curve\",0.722948,0.053117],[3.9,-0.666607,0.521418,\"right_curve\",\"right_curve\",0.378472,-0.273646],[4.0,-0.615187,0.536743,\"right_curve\",\"right_curve\",-0.048058,-0.630182]]}\n\n【运动描述任务】\n请把双人时序数值转写为适于短道速滑权威知识检索的自然中文观察描述；按真实时间顺序综合叙述：\n1. 最初谁在前、谁在后，相对内外侧以及间隔关系；\n2. 双方间隔是接近、扩大还是变化不明显，是否发生前后位置交换；\n3. 横向间隔、内外侧位置关系的变化；不要把相对变化擅自归因于某一个人的动作；\n4. 基于有效数值判断速度关系变化，以及直道和弯道过渡；\n5. 最后能够确认的客观位置关系。\n\n【输出限制】\n- summary、phases.description/evidence、key_observations和uncertainties必须采用自然中文运动过程表述，运动员一律用A/B表示，不得输出真实姓名、输入字段名或数学比较式。\n- 优先原有状态—变化过程—最终关系；不逐行复述、不堆砌数字，也不编造统计峰值或没提供的细节。\n- 只有充分证据时才用‘持续’‘始终’‘单调’‘逐渐’；不强制划分固定数量阶段。\n- 不得输出战术标签、动作意图、犯规、接触、裁判判罚或凭轨迹无法证实的比赛结果。\n- 只返回系统提示中的四字段JSON对象。",
+                  "model": "Qwen3.8-27B-FP8",
+                  "temperature": 0.1,
+                  "max_output_tokens": 1536,
+                  "thinking_enabled": false,
+                  "json_mode": true,
+                  "seed": null
+                },
+                "attempts": [
+                  {
+                    "started_at_utc": "2026-11-20T13:21:34+00:00",
+                    "finished_at_utc": "2026-11-20T13:22:02+00:00",
+                    "elapsed_s": 27.321,
+                    "status": "success",
+                    "validation_error": null,
+                    "raw_response": "{\n  \"summary\": \"观察初期，B在A前方约1.2米处，A位于B外侧。随后A沿赛道前进方向速度显著快于B，前后间隔迅速缩小，并在约2.4秒时A反超B。与此同时，A从B外侧逐渐移动至B内侧，横向位置发生反转。进入弯道后，A保持领先优势，但B的速度逐渐赶上，双方间隔略有扩大，A始终处于B的内侧位置。\",\n  \"phases\": [\n    {\n      \"time_range_s\": [0.0, 1.2],\n      \"description\": \"B领先A，A位于B外侧。A的赛道前进速度整体快于B，前后间隔开始缩小，但A仍在外侧。\",\n      \"evidence\": \"0.0秒时B领先1.19米，A在外侧0.51米。0.3秒时A的速度差达到0.60米/秒，间隔缩小至1.13米。1.2秒时A仍在外侧，但横向偏移接近零。\"\n    },\n    {\n      \"time_range_s\": [1.2, 2.5],\n      \"description\": \"A完成内外侧位置反转并反超B。A从B外侧移至内侧，前后间隔迅速缩小直至A领先。\",\n      \"evidence\": \"1.2秒时A横向偏移为-0.01米，随后变为负值，表明A移至内侧。2.3秒时A的速度差高达2.26米/秒，间隔缩小至0.29米。2.4秒时A反超B，间隔变为-0.07米。\"\n    },\n    {\n      \"time_range_s\": [2.5, 4.0],\n      \"description\": \"A在弯道中保持领先，位于B内侧。B的速度逐渐接近A，双方间隔略有扩大，但A未再被反超。\",\n      \"evidence\": \"2.5秒进入弯道，A领先0.19米，位于内侧0.87米。3.2秒时A领先0.81米，位于内侧0.16米。4.0秒时A领先0.62米，位于内侧0.54米，B的速度差转为负值，表明B在追赶。\"\n    }\n  ],\n  \"key_observations\": [\n    \"A在约2.4秒时从B后方反超至前方，完成了前后位置交换。\",\n    \"A在约1.2秒时从B外侧移动至B内侧，完成了横向位置反转。\",\n    \"在1.3秒至2.4秒期间，A沿赛道前进方向的速度显著高于B，是间隔迅速缩小的主要原因。\",\n    \"进入弯道后，A保持内侧位置，B在外侧，双方横向间隔先缩小后略有扩大。\",\n    \"观察结束时，A领先B约0.62米，且位于B内侧。\"\n  ],\n  \"uncertainties\": [\n    \"1.4秒至1.9秒期间速度数据缺失，无法精确判断该时段的速度变化细节。\",\n    \"2.2秒速度数据缺失，但前后时间点显示A速度极快，推断该时段A仍在加速或保持高速。\"\n  ]\n}",
+                    "parsed_response": {
+                      "summary": "观察初期，B在A前方约1.2米处，A位于B外侧。随后A沿赛道前进方向速度显著快于B，前后间隔迅速缩小，并在约2.4秒时A反超B。与此同时，A从B外侧逐渐移动至B内侧，横向位置发生反转。进入弯道后，A保持领先优势，但B的速度逐渐赶上，双方间隔略有扩大，A始终处于B的内侧位置。",
+                      "phases": [
+                        {
+                          "time_range_s": [
+                            0.0,
+                            1.2
+                          ],
+                          "description": "B领先A，A位于B外侧。A的赛道前进速度整体快于B，前后间隔开始缩小，但A仍在外侧。",
+                          "evidence": "0.0秒时B领先1.19米，A在外侧0.51米。0.3秒时A的速度差达到0.60米/秒，间隔缩小至1.13米。1.2秒时A仍在外侧，但横向偏移接近零。"
+                        },
+                        {
+                          "time_range_s": [
+                            1.2,
+                            2.5
+                          ],
+                          "description": "A完成内外侧位置反转并反超B。A从B外侧移至内侧，前后间隔迅速缩小直至A领先。",
+                          "evidence": "1.2秒时A横向偏移为-0.01米，随后变为负值，表明A移至内侧。2.3秒时A的速度差高达2.26米/秒，间隔缩小至0.29米。2.4秒时A反超B，间隔变为-0.07米。"
+                        },
+                        {
+                          "time_range_s": [
+                            2.5,
+                            4.0
+                          ],
+                          "description": "A在弯道中保持领先，位于B内侧。B的速度逐渐接近A，双方间隔略有扩大，但A未再被反超。",
+                          "evidence": "2.5秒进入弯道，A领先0.19米，位于内侧0.87米。3.2秒时A领先0.81米，位于内侧0.16米。4.0秒时A领先0.62米，位于内侧0.54米，B的速度差转为负值，表明B在追赶。"
+                        }
+                      ],
+                      "key_observations": [
+                        "A在约2.4秒时从B后方反超至前方，完成了前后位置交换。",
+                        "A在约1.2秒时从B外侧移动至B内侧，完成了横向位置反转。",
+                        "在1.3秒至2.4秒期间，A沿赛道前进方向的速度显著高于B，是间隔迅速缩小的主要原因。",
+                        "进入弯道后，A保持内侧位置，B在外侧，双方横向间隔先缩小后略有扩大。",
+                        "观察结束时，A领先B约0.62米，且位于B内侧。"
+                      ],
+                      "uncertainties": [
+                        "1.4秒至1.9秒期间速度数据缺失，无法精确判断该时段的速度变化细节。",
+                        "2.2秒速度数据缺失，但前后时间点显示A速度极快，推断该时段A仍在加速或保持高速。"
+                      ]
+                    },
+                    "usage": {
+                      "completion_tokens": 731,
+                      "prompt_tokens": 3441,
+                      "total_tokens": 4172,
+                      "completion_tokens_details": null,
+                      "prompt_tokens_details": null
+                    },
+                    "finish_reason": "stop",
+                    "model_returned": "Qwen3.8-27B-FP8",
+                    "response_id": "chatcmpl-940aa9dd24004a50",
+                    "attempt_index": 1
+                  }
+                ],
+                "status": "success",
+                "updated_at_utc": "2026-11-20T13:22:02+00:00"
+              }
+            }
+          },
+          "status": "success"
+        }
+      }
+    },
+    "A2": {
+      "experiment_id": "A2",
+      "description": "双人F1数值 + 主体和对手各自的单人S1数值序列，生成双人运动学摘要",
+      "settings": {
+        "pair_fields": [
+          "gap_opponent_minus_subject_m",
+          "offset_subject_minus_opponent_m",
+          "subject_section",
+          "opponent_section",
+          "delta_path_speed_mps",
+          "delta_reference_progress_speed_mps"
+        ],
+        "single_fields": [
+          "position_x_m",
+          "position_y_m",
+          "velocity_x_mps",
+          "velocity_y_mps",
+          "path_speed_mps",
+          "path_tangential_accel_mps2",
+          "heading_rad",
+          "yaw_rate_radps",
+          "curvature_inv_m",
+          "lateral_offset_ref_m",
+          "lateral_speed_mps",
+          "lateral_accel_mps2",
+          "reference_progress_speed_mps",
+          "section"
+        ],
+        "single_mode": "raw_numeric",
+        "sample_points": 41,
+        "window_mode": "fixed"
+      },
+      "events": {}
+    },
+    "A3": {
+      "experiment_id": "A3",
+      "description": "主体和对手分别用S1生成单人LLM摘要，再与双人F1数值一起生成双人摘要",
+      "settings": {
+        "pair_fields": [
+          "gap_opponent_minus_subject_m",
+          "offset_subject_minus_opponent_m",
+          "subject_section",
+          "opponent_section",
+          "delta_path_speed_mps",
+          "delta_reference_progress_speed_mps"
+        ],
+        "single_fields": [
+          "position_x_m",
+          "position_y_m",
+          "velocity_x_mps",
+          "velocity_y_mps",
+          "path_speed_mps",
+          "path_tangential_accel_mps2",
+          "heading_rad",
+          "yaw_rate_radps",
+          "curvature_inv_m",
+          "lateral_offset_ref_m",
+          "lateral_speed_mps",
+          "lateral_accel_mps2",
+          "reference_progress_speed_mps",
+          "section"
+        ],
+        "single_mode": "llm_single_summaries",
+        "sample_points": 41,
+        "window_mode": "fixed"
+      },
+      "events": {}
+    }
+  }
+}

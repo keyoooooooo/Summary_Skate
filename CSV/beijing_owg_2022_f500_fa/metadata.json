@@ -1,0 +1,412 @@
+{
+  "schema_version": "2.2",
+  "generated_at_utc": "2026-11-17T12:40:22+00:00",
+  "race_info": {
+    "race_id": "beijing_owg_2022_f500_fa",
+    "event": "2022北京冬奥会",
+    "race": "F500_FA",
+    "sex": "female",
+    "stage": "final_a"
+  },
+  "data_info": {
+    "fps": 50.0,
+    "time_unit": "s",
+    "position_unit": "m",
+    "speed_unit": "m/s",
+    "acceleration_unit": "m/s2",
+    "coordinate_system": "rink_2d",
+    "axis_assumption": "raw X is rink long axis; Y is rink short axis; unverified",
+    "frame_time_rule": "video_time_s = frame/fps + per-athlete fitted origin",
+    "raw_csv": "beijing_owg_2022_f500_fa.csv",
+    "output_schema_columns": 36,
+    "output_csv_format": "one athlete per CSV; NaN stored as empty string"
+  },
+  "athletes": {
+    "96": {
+      "csv_file": "athlete_96.csv",
+      "frame_range": [
+        628,
+        3055
+      ],
+      "source_rows": 2428,
+      "inserted_missing_frame_rows": 0,
+      "time_origin_s": 0.0,
+      "time_mapping_max_residual_s": 0.0,
+      "statistics": {
+        "frame_count": 2428,
+        "observed_position_frames": 2428,
+        "interpolated_position_frames": 0,
+        "valid_standard_position_frames": 2428,
+        "valid_speed_frames": 2406,
+        "valid_accel_frames": 2404,
+        "valid_geometry_frames": 2428,
+        "speed_review_frames": 45
+      },
+      "trajectory_segments": [
+        {
+          "start_frame": 628,
+          "end_frame": 3055,
+          "frame_count": 2428,
+          "interpolated_frames": 0,
+          "savgol_applied": true
+        }
+      ]
+    },
+    "97": {
+      "csv_file": "athlete_97.csv",
+      "frame_range": [
+        645,
+        3055
+      ],
+      "source_rows": 2411,
+      "inserted_missing_frame_rows": 0,
+      "time_origin_s": 0.0,
+      "time_mapping_max_residual_s": 0.0,
+      "statistics": {
+        "frame_count": 2411,
+        "observed_position_frames": 2411,
+        "interpolated_position_frames": 0,
+        "valid_standard_position_frames": 2411,
+        "valid_speed_frames": 2389,
+        "valid_accel_frames": 2387,
+        "valid_geometry_frames": 2411,
+        "speed_review_frames": 52
+      },
+      "trajectory_segments": [
+        {
+          "start_frame": 645,
+          "end_frame": 3055,
+          "frame_count": 2411,
+          "interpolated_frames": 0,
+          "savgol_applied": true
+        }
+      ]
+    },
+    "98": {
+      "csv_file": "athlete_98.csv",
+      "frame_range": [
+        645,
+        3055
+      ],
+      "source_rows": 2411,
+      "inserted_missing_frame_rows": 0,
+      "time_origin_s": 0.0,
+      "time_mapping_max_residual_s": 0.0,
+      "statistics": {
+        "frame_count": 2411,
+        "observed_position_frames": 2411,
+        "interpolated_position_frames": 0,
+        "valid_standard_position_frames": 2411,
+        "valid_speed_frames": 2389,
+        "valid_accel_frames": 2387,
+        "valid_geometry_frames": 2411,
+        "speed_review_frames": 39
+      },
+      "trajectory_segments": [
+        {
+          "start_frame": 645,
+          "end_frame": 3055,
+          "frame_count": 2411,
+          "interpolated_frames": 0,
+          "savgol_applied": true
+        }
+      ]
+    },
+    "99": {
+      "csv_file": "athlete_99.csv",
+      "frame_range": [
+        649,
+        3055
+      ],
+      "source_rows": 2407,
+      "inserted_missing_frame_rows": 0,
+      "time_origin_s": 0.0,
+      "time_mapping_max_residual_s": 0.0,
+      "statistics": {
+        "frame_count": 2407,
+        "observed_position_frames": 2407,
+        "interpolated_position_frames": 0,
+        "valid_standard_position_frames": 2407,
+        "valid_speed_frames": 2385,
+        "valid_accel_frames": 2383,
+        "valid_geometry_frames": 2407,
+        "speed_review_frames": 28
+      },
+      "trajectory_segments": [
+        {
+          "start_frame": 649,
+          "end_frame": 3055,
+          "frame_count": 2407,
+          "interpolated_frames": 0,
+          "savgol_applied": true
+        }
+      ]
+    },
+    "100": {
+      "csv_file": "athlete_100.csv",
+      "frame_range": [
+        660,
+        3055
+      ],
+      "source_rows": 2396,
+      "inserted_missing_frame_rows": 0,
+      "time_origin_s": 0.0,
+      "time_mapping_max_residual_s": 0.0,
+      "statistics": {
+        "frame_count": 2396,
+        "observed_position_frames": 2396,
+        "interpolated_position_frames": 0,
+        "valid_standard_position_frames": 2396,
+        "valid_speed_frames": 2374,
+        "valid_accel_frames": 2372,
+        "valid_geometry_frames": 2396,
+        "speed_review_frames": 6
+      },
+      "trajectory_segments": [
+        {
+          "start_frame": 660,
+          "end_frame": 3055,
+          "frame_count": 2396,
+          "interpolated_frames": 0,
+          "savgol_applied": true
+        }
+      ]
+    }
+  },
+  "position_processing": {
+    "source_fields": [
+      "raw_x",
+      "raw_y"
+    ],
+    "smoothing_method": "savitzky_golay",
+    "window_length": 21,
+    "polyorder": 3,
+    "boundary_mode": "numpy.pad(mode='reflect') then scipy.signal.savgol_filter",
+    "derivative_method": "numpy.gradient on smoothed values; second derivative is gradient of first",
+    "smoothing_edge_margin_frames": 10,
+    "speed_valid_edge_margin_frames": 11,
+    "accel_valid_edge_margin_frames": 12,
+    "source_npos_used_for_standard_position": false
+  },
+  "missing_data": {
+    "preserve_frame_index": true,
+    "interpolation_enabled": true,
+    "max_interpolation_gap_frames": 10,
+    "interpolation_method": "linear; only internal gaps with valid endpoints",
+    "long_gap_strategy": "split_contiguous_segments_no_extrapolation",
+    "minimum_savgol_segment_frames": 21,
+    "invalid_numeric_value": "empty_csv_cell",
+    "sei_zero_placeholder_policy": "does not invalidate raw position; source speed placeholder excluded",
+    "interpolation_affected_speed_margin_frames": 11,
+    "interpolation_affected_accel_margin_frames": 12
+  },
+  "track_geometry": {
+    "geometry_version": "inner_envelope_estimated_v1",
+    "geometry_type": "two_straights_two_semicircles",
+    "reference_radius_m": 8.5,
+    "inner_marker_radius_m": 8.0,
+    "straight_length_m": 28.856,
+    "reference_lap_length_m": 111.11907511102649,
+    "travel_direction": "counterclockwise",
+    "fitting_method": "athlete_inner_envelope",
+    "left_bound_method": "max_of_athlete_min_x",
+    "right_bound_method": "min_of_athlete_max_x",
+    "axis_assumption": "rink_long_axis_parallel_to_x",
+    "rotation_rad": 0.0,
+    "min_eligible_athlete_x_span_m": 35.0,
+    "per_athlete_extrema": [
+      {
+        "athlete_id": "96",
+        "min_x_m": -28.56360470001386,
+        "min_x_y_m": -0.7553521637824674,
+        "max_x_m": 22.343601192338095,
+        "max_x_y_m": 0.7763258107147442,
+        "x_span_m": 50.90720589235195,
+        "eligible": true
+      },
+      {
+        "athlete_id": "97",
+        "min_x_m": -23.714781997346083,
+        "min_x_y_m": -1.0399083132944955,
+        "max_x_m": 21.98256365932843,
+        "max_x_y_m": -0.1986590720360743,
+        "x_span_m": 45.697345656674514,
+        "eligible": true
+      },
+      {
+        "athlete_id": "98",
+        "min_x_m": -27.728460035320552,
+        "min_x_y_m": -0.945005948966768,
+        "max_x_m": 22.08072130186378,
+        "max_x_y_m": 1.0538721681155645,
+        "x_span_m": 49.80918133718433,
+        "eligible": true
+      },
+      {
+        "athlete_id": "99",
+        "min_x_m": -24.196181576776148,
+        "min_x_y_m": 0.5737226002696945,
+        "max_x_m": 21.83450142238417,
+        "max_x_y_m": 0.06554869714303943,
+        "x_span_m": 46.03068299916032,
+        "eligible": true
+      },
+      {
+        "athlete_id": "100",
+        "min_x_m": -26.652673872978145,
+        "min_x_y_m": 0.6106830347016586,
+        "max_x_m": 21.968961720760888,
+        "max_x_y_m": 0.21656445413371997,
+        "x_span_m": 48.62163559373903,
+        "eligible": true
+      }
+    ],
+    "calibration_status": "estimated_not_verified",
+    "reference_origin": "upper_straight_midpoint",
+    "reference_origin_kind": "fixed_nominal_geometric_origin_not_actual_race_start_line",
+    "origin_old_progress_m": 69.98753755551326,
+    "reference_origin_xy_m": [
+      -0.9401402874809559,
+      8.012820191924272
+    ],
+    "center_x_m": -0.9401402874809559,
+    "center_y_m": -0.487179808075728,
+    "left_trajectory_envelope_x_m": -23.714781997346083,
+    "right_trajectory_envelope_x_m": 21.83450142238417,
+    "left_reference_x_m": -23.868140287480955,
+    "right_reference_x_m": 21.987859712519047,
+    "envelope_span_m": 45.54928341973026,
+    "standard_template_span_m": 45.856,
+    "envelope_span_minus_template_m": -0.30671658026974313,
+    "status": "estimated",
+    "left_extreme_athlete_id": "97",
+    "right_extreme_athlete_id": "99",
+    "left_extreme_y_m": -1.0399083132944955,
+    "right_extreme_y_m": 0.06554869714303943,
+    "center_y_method": "mean_of_selected_extremal_y"
+  },
+  "track_projection": {
+    "projection_method": "nearest_point_on_four_stadium_geometry_primitives",
+    "progress_direction": "counterclockwise",
+    "reference_origin": "upper_straight_midpoint",
+    "reference_origin_type": "nominal_template_zero_not_actual_race_start",
+    "origin_xy_m": [
+      -0.9401402874809559,
+      8.012820191924272
+    ],
+    "origin_old_progress_offset_m": 69.98753755551326,
+    "progress_zero_transform": "new_mod = (old_mod - origin_old_progress_offset_m) % reference_lap_length_m",
+    "lateral_positive_direction": "outward",
+    "unwrap_method": "temporal_continuity_each_geometry_valid_run",
+    "lap_count_type": "relative_to_projection_valid_run_start",
+    "section_definition": {
+      "mode": "nominal_equal_angle_blocks",
+      "calibration_status": "approximation_not_official_marker_calibration",
+      "source": "ISU Guidance to the Racing Rules 2026/27, sections 1.10 and 2.1",
+      "official_guidance": "Straight Zone ends about 3m before first block; End of Straight ends at second block; Corner ends at last block",
+      "nominal_assumptions": [
+        "first_block_at_geometric_curve_entry",
+        "seventh_block_at_geometric_curve_exit",
+        "seven_blocks_equal_angular_spacing_across_180_degrees"
+      ],
+      "nominal_marker_count_per_curve": 7,
+      "nominal_marker_angular_spacing_deg": 30.0,
+      "nominal_marker_progress_step_m": 4.4505895925855405,
+      "end_of_straight_offset_before_first_block_m": 3.0,
+      "end_of_straight_offset_is_approximate": true,
+      "markers_progress_m": {
+        "left_curve": {
+          "first_block": 14.428,
+          "second_block": 18.87858959258554,
+          "last_block": 41.13153755551325
+        },
+        "right_curve": {
+          "first_block": 69.98753755551326,
+          "second_block": 74.4381271480988,
+          "last_block": 96.69107511102649
+        }
+      },
+      "interval_convention": "half_open_[start_s_m,end_s_m); upper_straight wraps at s=0",
+      "intervals_m": [
+        {
+          "section": "upper_straight",
+          "start_s_m": 0.0,
+          "end_s_m": 11.428
+        },
+        {
+          "section": "upper_end_of_straight",
+          "start_s_m": 11.428,
+          "end_s_m": 18.87858959258554
+        },
+        {
+          "section": "left_curve",
+          "start_s_m": 18.87858959258554,
+          "end_s_m": 41.13153755551325
+        },
+        {
+          "section": "lower_straight",
+          "start_s_m": 41.13153755551325,
+          "end_s_m": 66.98753755551326
+        },
+        {
+          "section": "lower_end_of_straight",
+          "start_s_m": 66.98753755551326,
+          "end_s_m": 74.4381271480988
+        },
+        {
+          "section": "right_curve",
+          "start_s_m": 74.4381271480988,
+          "end_s_m": 96.69107511102649
+        },
+        {
+          "section": "upper_straight",
+          "start_s_m": 96.69107511102649,
+          "end_s_m": 111.11907511102649
+        }
+      ],
+      "section_names": [
+        "upper_straight",
+        "upper_end_of_straight",
+        "left_curve",
+        "lower_straight",
+        "lower_end_of_straight",
+        "right_curve"
+      ]
+    },
+    "section_names": [
+      "upper_straight",
+      "upper_end_of_straight",
+      "left_curve",
+      "lower_straight",
+      "lower_end_of_straight",
+      "right_curve"
+    ],
+    "max_projection_distance_m": 8.0,
+    "ambiguity_distance_tolerance_m": 0.05,
+    "ambiguity_progress_separation_m": 2.0,
+    "max_progress_step_m_per_frame": 1.0
+  },
+  "race_lines": {
+    "start_line": null,
+    "finish_line": null,
+    "note": "参考进度零点固定为上直道中点；这里仅可选记录真实起跑线，真实起跑线不改变当前 s=0"
+  },
+  "race_progress": {
+    "race_start_frame": null,
+    "race_start_observed": false,
+    "initial_completed_laps": null,
+    "absolute_progress_available": false,
+    "note": "reference_progress_unwrapped_m 是连续投影段进度，不是从比赛起跑累计距离"
+  },
+  "quality_control": {
+    "source_speed_reference": "speed",
+    "source_speed_is_ground_truth": false,
+    "source_speed_time_alignment": "not_verified",
+    "speed_review_over_mps": 20.0,
+    "heading_min_speed_mps": 0.5,
+    "speed_valid_requires_full_sg_derivative_support": true,
+    "accel_valid_requires_full_sg_derivative_support": true,
+    "interpolation_affected_speed_and_accel_masked": true,
+    "quality_flags_delimiter": ";"
+  }
+}
